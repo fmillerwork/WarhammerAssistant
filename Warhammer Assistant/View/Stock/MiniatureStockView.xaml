@@ -1,0 +1,104 @@
+﻿<UserControl x:Class="Warhammer_Assistant.View.Stock.MiniatureStockView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Warhammer_Assistant.View.Stock"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+        <!--#region Filtres/Tris -->
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" DockPanel.Dock="Top">
+
+            <!--#region Tris -->
+            <TextBlock Text="Tris" Margin="4" FontSize="17" HorizontalAlignment="Center"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+
+                <!--#region Tris -->
+                <GroupBox Header="Tri" Margin="4">
+                    <StackPanel Orientation="Vertical">
+                        <RadioButton x:Name="AlphabeticSortRB" Margin="4" Content="Alphabétique"/>
+                        <RadioButton x:Name="SizeSortRB" Margin="4" Content="Taille"/>
+                        <RadioButton x:Name="FactionSortRB" Margin="4" Content="Faction"/>
+                        <RadioButton x:Name="CategorySortRB" Margin="4" Content="Catégorie"/>
+                    </StackPanel>
+                </GroupBox>
+                <!--#endregion-->
+
+                <!--#region Ordre -->
+                <GroupBox Header="Ordre" Margin="4" VerticalAlignment="Top">
+                    <StackPanel Orientation="Vertical">
+                        <RadioButton x:Name="AescendingRB" Margin="4" Content="Croissant"/>
+                        <RadioButton x:Name="DescendingRB" Margin="4" Content="Décroissant"/>
+                    </StackPanel>
+                </GroupBox>
+                <!--#endregion-->
+                
+            </StackPanel> 
+            <!--#endregion-->
+
+            <!--#region Filtres-->
+            <TextBlock Text="Filtres" Margin="4" FontSize="17" HorizontalAlignment="Center"/>
+
+            <TextBox x:Name="SearchTB" Margin="4" ></TextBox>
+            <!--#region ComboBox-->
+            <StackPanel Orientation="Horizontal">
+                <ComboBox x:Name="Faction" Margin="4">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox Margin="4" Content="{Binding Faction}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <TextBlock Text="Gamme" Margin="4"/>
+
+                <ComboBox x:Name="Size" Margin="4">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox Margin="4" Content="{Binding Size}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <TextBlock Text="Taille" Margin="4"/>
+
+                <ComboBox x:Name="Category" Margin="4">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox Margin="4" Content="{Binding Category}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <TextBlock Text="État" Margin="4"/>
+
+            </StackPanel>
+            <!--#endregion-->
+
+            <DockPanel>
+                <ToggleButton x:Name="DisplayType" Margin="4" Content="Afficher par références"/>
+                <Button x:Name="ResetFilter" Margin="4" HorizontalAlignment="Left">Réinitialiser</Button>
+            </DockPanel>
+            <!--#endregion-->
+        </StackPanel>
+
+        <!--#endregion-->
+
+        <!--#region Liste -->
+        <ListBox ItemsSource="{Binding Minatures}" x:Name="MinatureLBbyRef" Margin="4">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding figName}" Margin="4"/>
+                        <TextBlock Text="{Binding figCat}" Margin="4"/>
+                        <TextBlock Text="{Binding faction}" Margin="4"/>
+                        <TextBlock Text="{Binding size}" Margin="4"/>
+                        <!-- IMAGE -->
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <!--#endregion-->
+        
+    </DockPanel>
+</UserControl>

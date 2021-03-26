@@ -1,0 +1,25 @@
+﻿<Window x:Class="Warhammer_Assistant.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Warhammer_Assistant"
+        xmlns:Stock="clr-namespace:Warhammer_Assistant.View.Stock"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="595" Width="897">
+    <TabControl Margin="0">
+        <TabItem Header="Inventaire">
+            <Stock:MainStockView/>
+        </TabItem>
+        <TabItem Header="Projets">
+
+        </TabItem>
+        <TabItem Header="Techniques">
+            <Grid Background="#FFE5E5E5"/>
+        </TabItem>
+        <TabItem Header="Approvisionnement">
+            <Grid Background="#FFE5E5E5"/>
+        </TabItem>
+    </TabControl>
+
+</Window>

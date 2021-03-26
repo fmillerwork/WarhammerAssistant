@@ -1,0 +1,128 @@
+﻿<UserControl x:Class="Warhammer_Assistant.View.Stock.PaintStockView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Warhammer_Assistant.View.Stock"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+        <!--#region Filtres/Tris -->
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" DockPanel.Dock="Top">
+
+            <!--#region Tris -->
+            <TextBlock Text="Tris" Margin="4" FontSize="17" HorizontalAlignment="Center"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+
+
+                <!--#region Tris -->
+                <GroupBox Header="Tri" Margin="4">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+                        <RadioButton x:Name="AlphabeticSortRB" Margin="4" Content="Alphabétique" Checked="AlphabeticSortRB_Checked" IsChecked="True"/>
+                        <RadioButton x:Name="ColorSortRB" Margin="4" Content="Couleur" Checked="ColorSortRB_Checked"/>
+                        <RadioButton x:Name="FilledSortRB" Margin="4" Content="Remplissage" Checked="FilledSortRB_Checked"/>
+                        <RadioButton x:Name="TypeSortRB" Margin="4" Content="Gamme" Checked="TypeSortRB_Checked"/>
+                    </StackPanel>
+                </GroupBox>
+                <!--#endregion--> 
+                
+                <!--#region Ordre -->
+                <GroupBox Header="Tri" Margin="4" VerticalAlignment="Top">
+                    <StackPanel Orientation="Vertical">
+                        <RadioButton x:Name="AescendingRB" Margin="4" Content="Croissant" IsChecked="True" Checked="AescendingRB_Checked"/>
+                        <RadioButton x:Name="DescendingRB" Margin="4" Content="Décroissant" Checked="DescendingRB_Checked"/>
+                    </StackPanel>
+                </GroupBox>
+                <!--#endregion-->
+
+            </StackPanel>
+            <!--#endregion-->
+
+            <!--#region Filtres-->
+            <TextBlock Text="Filtres" Margin="4" FontSize="17" HorizontalAlignment="Center"/>
+
+            <TextBox x:Name="SearchTB" Margin="4"></TextBox>
+            <!--#region ComboBox-->
+            <DockPanel>
+                <ComboBox x:Name="Type" Margin="4">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox Margin="4"/>
+                                <TextBlock Margin="4" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <TextBlock Text="Gamme" Margin="4" TextWrapping="Wrap"/>
+
+                <ComboBox x:Name="Color" Margin="4">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox Margin="4"/>
+                                <TextBlock Margin="4" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <TextBlock Text="Couleur" Margin="4"/>
+
+                <ComboBox x:Name="FillingLv" Margin="4">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox Margin="4"/>
+                                <TextBlock Margin="4" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <TextBlock Text="Remplissage" Margin="4"/>
+
+            </DockPanel>
+            <!--#endregion-->
+
+            <DockPanel>
+                <ToggleButton x:Name="DisplayType" Margin="4" Content="Afficher par références" Checked="DisplayType_Checked" Unchecked="DisplayType_Unchecked"/>
+                <Button x:Name="ResetFilter" Margin="4" HorizontalAlignment="Left">Réinitialiser</Button>
+            </DockPanel>
+            <!--#endregion-->
+        </StackPanel>
+
+        <!--#endregion-->
+
+        <!--#region Liste -->
+        <DockPanel>
+            <ListBox ItemsSource="{Binding Paints}" x:Name="PaintLBbyRef" Margin="4" DockPanel.Dock="Top" Visibility="Collapsed">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Label}" Margin="4"/>
+                            <TextBlock Text="{Binding Type}" Margin="4"/>
+                            <TextBlock Text="{Binding Color}" Margin="4"/>
+                            <TextBlock Text="{Binding Qte}" Margin="4"/>
+                            <!-- IMAGE -->
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <ListBox ItemsSource="{Binding Paints}" x:Name="PaintLBbyID" Margin="4" DockPanel.Dock="Bottom">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Label}" Margin="4"/>
+                            <TextBlock Text="{Binding Type}" Margin="4"/>
+                            <TextBlock Text="{Binding Color}" Margin="4"/>
+                            <Slider Value="{Binding FilledLv}" Margin="4"/>
+                            <!-- IMAGE -->
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </DockPanel>
+        <!--#endregion-->
+    </DockPanel>
+</UserControl>
